@@ -7,14 +7,20 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.TankDrive;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 public class DriveTrain extends Subsystem {
 
-  //TODO: change the CANSparkMax to be TalonSRX
-  private CANSparkMax _rightFront = new CANSparkMax(RobotMap.right_front_motor_port, MotorType.kBrushless);
-  private CANSparkMax _rightRear = new CANSparkMax(RobotMap.right_back_motor_port, MotorType.kBrushless);
-  private CANSparkMax _leftFront = new CANSparkMax(RobotMap.left_front_motor_port, MotorType.kBrushless);
-  private CANSparkMax _leftRear = new CANSparkMax(RobotMap.left_back_motor_port, MotorType.kBrushless);
+  //create talon objects
+  private WPI_TalonSRX _rightFront = new WPI_TalonSRX(RobotMap.right_front_motor_port);
+  private WPI_TalonSRX _rightRear = new WPI_TalonSRX(RobotMap.right_back_motor_port);
+  private WPI_TalonSRX _leftFront = new WPI_TalonSRX(RobotMap.left_front_motor_port);
+  private WPI_TalonSRX _leftRear = new WPI_TalonSRX(RobotMap.left_back_motor_port);
+
+  //initialize the differential drive
   private DifferentialDrive _diffDrive = new DifferentialDrive(_leftFront, _rightFront);
+
   private double rightGoverned = 0.0;
   private double leftGoverned = 0.0;
   private double motor_gain = .5; //TODO: Set Motor Gain
@@ -24,8 +30,8 @@ public class DriveTrain extends Subsystem {
     _leftFront.setInverted(false); //TODO: Confirm Inversion
     _rightRear.setInverted(false); //TODO: Confirm Inversion
     _leftRear.setInverted(false); //TODO: Confirm Inversion
-    _rightRear.follow(_rightFront);
-    _leftRear.follow(_leftFront);
+    _rightRear.set(ControlMode.Follower, RobotMap.right_front_motor_port);
+    _leftRear.set(ControlMode.Follower, RobotMap.left_front_motor_port);
   }
 
   @Override

@@ -4,9 +4,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.BoltCutter;
 
 public class Robot extends TimedRobot {
   public static DriveTrain m_drive_train = new DriveTrain();
+  public static BoltCutter m_bolt_cutter = new BoltCutter();
   public static OI m_oi;
   Command m_autonomousCommand;
 
