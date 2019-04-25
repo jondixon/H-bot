@@ -37,19 +37,19 @@ public class BoltCutter extends Subsystem {
 
   public void CloseCutter() {
 
-      openRelay.set(false);
-      closeRelay.set(true);
+      openRelay.set(true);
+      closeRelay.set(false);
   }
 
   public void OpenCutter() {
 
-    openRelay.set(true);
-    closeRelay.set(false);
+    openRelay.set(false);
+    closeRelay.set(true);
   }
 
   public void StopCutter() {
 
-    openRelay.set(false);
-    closeRelay.set(false);
+    openRelay.set(true);
+    closeRelay.set(true);
   }
 }

@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import frc.robot.commands.CloseCutter;
 import frc.robot.commands.OpenCutter;
@@ -13,11 +14,11 @@ public class OI {
   public static int LXAxis = 0;
   public static int leftStick = 1; //aka LYAxis
   public static int RXAxis = 2;
-  public static int rightStick = 5; //aka RYAxis
+  public static int rightStick = 3; //aka RYAxis
 
-  public static int AButton = 0;
-  public static int BButton = 1;
-  public static int XButton = 2;
+  public static int AButton = 1;
+  public static int BButton = 2;
+  public static int XButton = 0;
   public static int YButton = 3;
 
   public Joystick base = null; 
@@ -29,16 +30,30 @@ public class OI {
     try {
       base = new Joystick(baseJoystickPort);
 
+      baseXButton = new JoystickButton(base, XButton);
+
+      baseAButton = new JoystickButton(base, AButton);
+
+
+      setupBaseJoystick();
+
       
     } catch (Exception e) {
       //TODO: handle exception
+      System.out.print(e);
     }
   }
 
   public void setupBaseJoystick() {
     if (base != null) {
-      baseXButton.whileHeld(new CloseCutter());
-      baseAButton.whileHeld(new OpenCutter());
+      System.out.print("3\n");
+
+      baseXButton.whenPressed(new CloseCutter());
+      System.out.print("4\n");
+      
+      baseAButton.whenPressed(new OpenCutter());
+      System.out.print("5\n");
+
     }
   }
 	
