@@ -27,6 +27,9 @@ public class BoltCutter extends Subsystem {
 
     openRelay = new DigitalOutput(RobotMap.DIO_RELAY_OPEN);
     closeRelay = new DigitalOutput(RobotMap.DIO_RELAY_CLOSE);
+
+    openRelay.set(true);
+    closeRelay.set(true);
   }
 
   @Override

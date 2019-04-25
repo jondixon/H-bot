@@ -16,10 +16,10 @@ public class OI {
   public static int RXAxis = 2;
   public static int rightStick = 3; //aka RYAxis
 
-  public static int AButton = 1;
-  public static int BButton = 2;
-  public static int XButton = 0;
-  public static int YButton = 3;
+  public static int AButton = 2;
+  public static int BButton = 3;
+  public static int XButton = 1;
+  public static int YButton = 4;
 
   public Joystick base = null; 
   public Button baseAButton = null;
@@ -48,7 +48,7 @@ public class OI {
     if (base != null) {
       System.out.print("3\n");
 
-      baseXButton.whenPressed(new CloseCutter());
+      baseXButton.whileHeld(new CloseCutter());
       System.out.print("4\n");
       
       baseAButton.whenPressed(new OpenCutter());

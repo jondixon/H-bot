@@ -17,17 +17,25 @@ import frc.robot.OI;
 
 public class CloseCutter extends Command {
 
-  private Joystick js = Robot.m_oi.getBaseJoystick();
+  private Joystick js = null;
 
   public CloseCutter() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    System.out.print("Before Requires\n");
+
     requires(Robot.m_bolt_cutter);
+    System.out.print("After Requires\n");
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.print("Initialize\n");
+
+    js = Robot.m_oi.getBaseJoystick();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,7 +48,7 @@ public class CloseCutter extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if( !js.getRawButton(OI.XButton)) {
+    if( !js.getRawButton(1)) {
       return true;
     }
     return false;

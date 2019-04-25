@@ -16,7 +16,7 @@ import frc.robot.OI;
 
 public class OpenCutter extends Command {
 
-  private Joystick js = Robot.m_oi.getBaseJoystick();
+  private Joystick js = null;
 
   public OpenCutter() {
     // Use requires() here to declare subsystem dependencies
@@ -27,6 +27,8 @@ public class OpenCutter extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    js = Robot.m_oi.getBaseJoystick();
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -8,8 +8,8 @@ public class RobotMap {
 	public static int left_front_motor_port = 1; //TODO: Confirm Motor Port
 	public static int left_back_motor_port = 3; //TODO: Confirm Motor Port
 
-	public static int DIO_RELAY_OPEN = 0;
-	public static int DIO_RELAY_CLOSE = 1;
+	public static int DIO_RELAY_OPEN = 1;
+	public static int DIO_RELAY_CLOSE = 0;
 
 	public static int ELEVATOR_TALON = 5;
 }
