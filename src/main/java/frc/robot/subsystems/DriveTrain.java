@@ -23,12 +23,12 @@ public class DriveTrain extends Subsystem {
 
   private double rightGoverned = 0.0;
   private double leftGoverned = 0.0;
-  private double motor_gain = .5; //TODO: Set Motor Gain
+  private double motor_gain = 1; //TODO: Set Motor Gain
 
   public DriveTrain() {
-    _rightFront.setInverted(false); //TODO: Confirm Inversion
-    _leftFront.setInverted(false); //TODO: Confirm Inversion
-    _rightRear.setInverted(false); //TODO: Confirm Inversion
+    _rightFront.setInverted(true); //TODO: Confirm Inversion
+    _leftFront.setInverted(true); //TODO: Confirm Inversion
+    _rightRear.setInverted(true); //TODO: Confirm Inversion
     _leftRear.setInverted(false); //TODO: Confirm Inversion
     _rightRear.set(ControlMode.Follower, RobotMap.right_front_motor_port);
     _leftRear.set(ControlMode.Follower, RobotMap.left_front_motor_port);
