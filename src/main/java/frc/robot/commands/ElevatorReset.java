@@ -9,58 +9,42 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.Joystick;
 
-
-public class CloseCutter extends Command {
-
-  private Joystick js = null;
-
-  public CloseCutter() {
+public class ElevatorReset extends Command {
+  public ElevatorReset() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    System.out.print("Before Requires\n");
-
-    requires(Robot.m_bolt_cutter);
-    System.out.print("After Requires\n");
-
+    requires(Robot.m_elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.print("Initialize\n");
-
-    js = Robot.m_oi.getBaseJoystick();
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_bolt_cutter.CloseCutter();
-    System.out.print("closing\n");
+    Robot.m_elevator.elevatorByPower(-0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if( !js.getRawButton(1)) {
-      return true;
-    }
-    return false;
+    return Robot.m_elevator.getResetLimitSwitch();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_bolt_cutter.StopCutter();
+    Robot.m_elevator.resetElevatorEncoder();
+    Robot.m_elevator.elevatorByPower(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_bolt_cutter.StopCutter();
+    Robot.m_elevator.elevatorByPower(0);
   }
 }
