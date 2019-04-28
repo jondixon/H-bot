@@ -10,58 +10,68 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Joystick;
+import java.lang.Thread;
 import frc.robot.OI;
+import frc.robot.RobotMap;
 
 
-public class CloseCutter extends Command {
+public class Grind extends Command {
 
   private Joystick js = null;
-
-  public CloseCutter() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    System.out.print("Before Requires\n");
-
-    requires(Robot.m_bolt_cutter);
-    System.out.print("After Requires\n");
+  
+public Grind() {
+    requires(Robot.m_grinder);
 
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.print("Initialize\n");
+    System.out.print("Initialize Grinder\n");
 
     js = Robot.m_oi.getBaseJoystick();
+
+    //We think it needs a 20ms on pulse to enable
+    Robot.m_grinder.setServo(1.0);
+    
+    try {
+        Thread.sleep(20);
+
+    } catch (Exception e) {
+        //TODO: handle exception
+    }
+    //Off-pulse after 20ms
+    Robot.m_grinder.setServo(0);
+    System.out.print("Done Initialize Grinder\n");
+
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_bolt_cutter.CloseCutter();
-    // System.out.print("closing\n");
+   /*
+        double left = js.getRawAxis(OI.leftStick);
+        Robot.m_grinder.setServo(left);
+        System.out.println("cmd:" + left);
+        */
+
+    if (js.getRawButton(OI.BButton)){
+        Robot.m_grinder.setServo(1.0);
+        //System.out.print("Servo On\n");
+    }else{
+        Robot.m_grinder.setServo(0);
+        //System.out.print("Servo off\n");
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if( !js.getRawButton(OI.XButton)) {
-      return true;
-    }
+
     return false;
   }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-    Robot.m_bolt_cutter.StopCutter();
-  }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-    Robot.m_bolt_cutter.StopCutter();
-  }
 }

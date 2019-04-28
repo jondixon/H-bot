@@ -16,9 +16,9 @@ public class OI {
   public static int RXAxis = 2;
   public static int rightStick = 3; //aka RYAxis
 
-  public static int AButton = 2;
-  public static int BButton = 3;
-  public static int XButton = 1;
+  public static int AButton = 2; //open cutter
+  public static int BButton = 3; //run grinder
+  public static int XButton = 1; //close cutter
   public static int YButton = 4;
 
   public Joystick base = null; 

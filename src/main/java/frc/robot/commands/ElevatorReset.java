@@ -20,12 +20,13 @@ public class ElevatorReset extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_elevator.disable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_elevator.elevatorByPower(-0.2);
+    Robot.m_elevator.setMotor(-0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,13 +39,13 @@ public class ElevatorReset extends Command {
   @Override
   protected void end() {
     Robot.m_elevator.resetElevatorEncoder();
-    Robot.m_elevator.elevatorByPower(0);
+    Robot.m_elevator.setMotor(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_elevator.elevatorByPower(0);
+    Robot.m_elevator.setMotor(0);
   }
 }

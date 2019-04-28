@@ -4,19 +4,23 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.PIDElevator;
 import frc.robot.subsystems.BoltCutter;
+import frc.robot.subsystems.AngleGrinder;
 
 public class Robot extends TimedRobot {
-  public static DriveTrain m_drive_train = new DriveTrain();
+ // public static DriveTrain m_drive_train = new DriveTrain();
   public static BoltCutter m_bolt_cutter = new BoltCutter();
-  public static Elevator m_elevator = new Elevator();
+  public static PIDElevator m_elevator = new PIDElevator();
+  public static AngleGrinder m_grinder = new AngleGrinder();
+
   public static OI m_oi;
   Command m_autonomousCommand;
 
   @Override
   public void robotInit() {
     m_oi = new OI();
+    System.out.println("Done robotInit");
   }
 
   @Override
@@ -57,7 +61,7 @@ public class Robot extends TimedRobot {
 
   }
 
-  @Override
-  public void testPeriodic() {
-  }
+  // @Override
+  // public void testPeriodic() {
+  // }
 }

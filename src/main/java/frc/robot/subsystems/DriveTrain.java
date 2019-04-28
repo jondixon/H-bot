@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
-import frc.robot.commands.TankDrive;
+//import frc.robot.commands.TankDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -24,17 +24,17 @@ public class DriveTrain extends Subsystem {
   private double motor_gain = 1; //TODO: Set Motor Gain
 
   public DriveTrain() {
-    _rightFront.setInverted(true); //TODO: Confirm Inversion
-    _leftFront.setInverted(true); //TODO: Confirm Inversion
-    _rightRear.setInverted(true); //TODO: Confirm Inversion
-    _leftRear.setInverted(false); //TODO: Confirm Inversion
+    _rightFront.setInverted(true);
+    _leftFront.setInverted(true);
+    _rightRear.setInverted(true);
+    _leftRear.setInverted(false);
     _rightRear.set(ControlMode.Follower, RobotMap.right_front_motor_port);
     _leftRear.set(ControlMode.Follower, RobotMap.left_front_motor_port);
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new TankDrive());
+    //setDefaultCommand(new TankDrive());
   }
 
   public void drivetrainStop() {

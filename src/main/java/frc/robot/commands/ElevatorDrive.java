@@ -27,6 +27,8 @@ public class ElevatorDrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_elevator.enable();
+    Robot.m_elevator.setSetpoint(Robot.m_elevator.getEncoder());
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -38,7 +40,8 @@ public class ElevatorDrive extends Command {
     else if (dpadDown)
       targetPosition = targetPosition - increment;
     
-    Robot.m_elevator.elevatorToTarget(targetPosition);
+
+    Robot.m_elevator.setSetpoint(targetPosition);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -50,13 +53,13 @@ public class ElevatorDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_elevator.elevatorStop();
+    Robot.m_elevator.setMotor(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_elevator.elevatorStop();
+    Robot.m_elevator.setMotor(0);
   }
 }

@@ -20,7 +20,7 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Arm extends Subsystem {
-  private TalonSRX _shoulderMotor = new TalonSRX(RobotMap.shoulder_motor_port);
+  private TalonSRX _shoulderMotor = new TalonSRX(RobotMap.CAN_ID_ARM);
   private int DEG_2_COUNTS = 0; //TODO: set after cal
   private DigitalInput _highLimitSwitch = new DigitalInput(RobotMap.DIO_ARM_LIMIT_HIGH);
   private DigitalInput _lowLimitSwitch = new DigitalInput(RobotMap.DIO_ARM_LIMIT_LOW);
